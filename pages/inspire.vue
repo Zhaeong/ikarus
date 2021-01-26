@@ -13,6 +13,8 @@
             <em>&mdash;John Johnson</em>
           </small>
         </footer>
+
+        &#8220;Actually, first, write the code, then find a problem.&#8221;
       </blockquote>
     </v-col>
   </v-row>
