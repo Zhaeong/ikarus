@@ -37,6 +37,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/axios',
   ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
@@ -57,7 +58,9 @@ export default {
       }
     }
   },
-
+  serverMiddleware: [
+    { path: "/api", handler: "~/serverMiddleware/rest.js" },
+  ],
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }

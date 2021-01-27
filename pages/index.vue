@@ -9,18 +9,19 @@
       -->
       <v-card>
         <v-card-title class="headline">
-         Owen Zhang 
+          Owen Zhang
         </v-card-title>
         <v-card-text>
-          <p>An exploratory personal website made with a modern js framework, which is a baffling 40mb after build for serving what is essentially text!</p>
+          <p>
+            An exploratory personal website made with a modern js framework,
+            which is a baffling 40mb after build for serving what is essentially
+            text!
+          </p>
+          {{ item }}
         </v-card-text>
         <v-card-actions>
           <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/inspire"
-          >
+          <v-btn color="primary" nuxt to="/inspire">
             Continue
           </v-btn>
         </v-card-actions>
@@ -30,13 +31,26 @@
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
+import Logo from "~/components/Logo.vue";
+import VuetifyLogo from "~/components/VuetifyLogo.vue";
 
 export default {
   components: {
     Logo,
     VuetifyLogo
+  },
+  async asyncData(context) {
+    var item = "heyyoo";
+
+    var url = "/api/title";
+    let { data } = await context.$axios.get(url);
+    console.log("type:", typeof data);
+    console.log("here:", data);
+    item = data;
+    if (process.server) {
+      console.log("Is server process");
+    }
+    return { item };
   }
-}
+};
 </script>
