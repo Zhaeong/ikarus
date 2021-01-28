@@ -14,8 +14,6 @@ app.get("/title", (req, res) => {
     useNewUrlParser: true
   });
   client.connect(err => {
-    console.log("got in here");
-
     var query = { title: "main" };
     client
       .db("daedalus")
