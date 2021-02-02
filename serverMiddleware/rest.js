@@ -1,31 +1,42 @@
 const bodyParser = require("body-parser");
 const app = require("express")();
 
-const MongoClient = require("mongodb").MongoClient;
+/*
+postgres://wooduqmm:V_Fzp8pzrdwC8EKKy7-HqgaMIPbc4YsB@ziggy.db.elephantsql.com:5432/wooduqmm
+*/
 
-const uri =
-  "mongodb+srv://ikarus:ikarus@cluster0.6olk4.mongodb.net/daedalus?retryWrites=true&w=majority";
+const { Pool, Client } = require("pg");
+
+const createFireDBquery = `
+  CREATE TABLE IF NOT EXISTS fire (
+    id serial PRIMARY KEY,
+    title varchar, 
+    content varchar,
+    created TIMESTAMP NOT NULL,
+    modified TIMESTAMP NOT NULL);
+`;
+
+const pool = new Pool({
+  user: "wooduqmm",
+  host: "ziggy.db.elephantsql.com",
+  database: "wooduqmm",
+  password: "V_Fzp8pzrdwC8EKKy7-HqgaMIPbc4YsB",
+  port: 5432
+});
 
 app.get("/", (req, res) => {
   res.send("asfdsfsdfs");
 });
 app.get("/title", (req, res) => {
-  const client = new MongoClient(uri, {
-    useNewUrlParser: true
-  });
-  client.connect(err => {
-    var query = { title: "main" };
-    client
-      .db("daedalus")
-      .collection("fire")
-      .find(query)
-      .toArray((err, result) => {
-        if (err) throw err;
-        console.log(result);
-
-        res.send(result[0].content);
-      });
-    client.close();
+  console.log("in titlie");
+  pool.query(createFireDBquery, (err, result) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    console.log("Yaaa:", result);
+    pool.end();
+    res.send("susuusuusus");
   });
 });
 

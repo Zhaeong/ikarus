@@ -11,8 +11,8 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.12.5",
     "core-js": "^3.8.2",
-    "mongo": "^0.1.0",
-    "nuxt": "^2.14.12"
+    "nuxt": "^2.14.12",
+    "pg": "^8.5.1"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.11.3"

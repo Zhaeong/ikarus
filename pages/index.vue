@@ -40,6 +40,7 @@ export default {
     VuetifyLogo
   },
   async asyncData(context) {
+    console.log("here?");
     var item = "heyyoo";
 
     var url = "/api/title";
