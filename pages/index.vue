@@ -12,11 +12,6 @@
           Owen Zhang
         </v-card-title>
         <v-card-text>
-          <p>
-            An exploratory personal website made with a modern js framework,
-            which is a baffling 40mb after build for serving what is essentially
-            text!
-          </p>
           {{ item }}
         </v-card-text>
         <v-card-actions>
