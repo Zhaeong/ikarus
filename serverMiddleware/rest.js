@@ -6,6 +6,8 @@ postgres://wooduqmm:V_Fzp8pzrdwC8EKKy7-HqgaMIPbc4YsB@ziggy.db.elephantsql.com:54
 */
 var db = require("./db.js").default;
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.get("/", (req, res) => {
   res.send("asfdsfsdfs");
 });
@@ -22,6 +24,15 @@ app.get("/title", (req, res) => {
     .catch(error => {
       console.log("Something Went Wrong:", error);
     });
+});
+
+app.post("/add", (req, res) => {
+  console.log("got in this", req.body);
+  console.log("got in this", req.body.title);
+
+  db.insertFire(req.body.title, req.body.content).then(result => {
+    res.send("Rows:" + result);
+  });
 });
 
 module.exports = app;
