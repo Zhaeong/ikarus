@@ -21,37 +21,31 @@ const createStaticsDBquery = `
 
 const insertFireQuery = "INSERT INTO fire(title, content) VALUES($1, $2)";
 
-function createPool() {
-  pool = new Pool({
+const opts = {
+  max: 10, // maximum size of the pool
+  min: 2 // minimum size of the pool
+};
+
+const pool = new Pool(
+  {
     user: "wooduqmm",
     host: "ziggy.db.elephantsql.com",
     database: "wooduqmm",
     password: "V_Fzp8pzrdwC8EKKy7-HqgaMIPbc4YsB",
     port: 5432
-  });
-  return pool;
-}
-
-function createDB() {}
+  },
+  opts
+);
 
 export default {
   tester: "aaaa",
   sendQuery: async function(inputQuery) {
-    const pool = new Pool({
-      user: "wooduqmm",
-      host: "ziggy.db.elephantsql.com",
-      database: "wooduqmm",
-      password: "V_Fzp8pzrdwC8EKKy7-HqgaMIPbc4YsB",
-      port: 5432
-    });
     response = await pool.query(inputQuery).catch(e => {
       console.log("PROMISE_ERROR", e);
     });
-    pool.end();
     return response.rows;
   },
   insertFire: async function(title, content) {
-    pool = createPool();
     var input = [title, content];
     response = await pool.query(insertFireQuery, input).catch(e => {
       console.log("PROMISE_ERROR_INSERT_FIRE", e);
@@ -61,7 +55,6 @@ export default {
     //    return "SUCCESS";
     console.log("fromDB", response.rowCount);
 
-    pool.end();
     return response.rowCount;
   }
 };
