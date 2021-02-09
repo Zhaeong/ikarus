@@ -21,21 +21,25 @@ const createStaticsDBquery = `
 
 const insertFireQuery = "INSERT INTO fire(title, content) VALUES($1, $2)";
 
+const selectFireQuery = `
+SELECT id, title, content, created 
+FROM public.fire
+ORDER BY id ASC `;
+
 const opts = {
   max: 10, // maximum size of the pool
   min: 2 // minimum size of the pool
 };
 
-const pool = new Pool(
-  {
-    user: "wooduqmm",
-    host: "ziggy.db.elephantsql.com",
-    database: "wooduqmm",
-    password: "V_Fzp8pzrdwC8EKKy7-HqgaMIPbc4YsB",
-    port: 5432
-  },
-  opts
-);
+const pool = new Pool({
+  user: "wooduqmm",
+  host: "ziggy.db.elephantsql.com",
+  database: "wooduqmm",
+  password: "V_Fzp8pzrdwC8EKKy7-HqgaMIPbc4YsB",
+  port: 5432,
+  max: 10,
+  min: 2
+});
 
 export default {
   tester: "aaaa",
@@ -56,5 +60,13 @@ export default {
     console.log("fromDB", response.rowCount);
 
     return response.rowCount;
+  },
+  selectFire: async function() {
+    response = await pool.query(selectFireQuery).catch(e => {
+      console.log("PROMISE_ERROR_INSERT_FIRE", e);
+      return "FAIL";
+    });
+
+    return response.rows;
   }
 };

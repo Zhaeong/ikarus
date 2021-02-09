@@ -1,6 +1,5 @@
 <template>
   <v-form ref="form" lazy-validation>
-    {{ out }}
     <v-text-field
       v-model="title"
       label="Title"
@@ -23,11 +22,11 @@ export default {
   async asyncData(context) {
     console.log(context.params);
     var out = context.params.id;
-    return { out };
+    console.log("inputery: ", out);
+    //title = context.params.title;
+    return { title: context.params.title, content: context.params.content };
   },
-  data() {
-    return { title: "agbba", content: "huh" };
-  },
+  data() {},
   methods: {
     async addEntry() {
       console.log("yyaaa?");

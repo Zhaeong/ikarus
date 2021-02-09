@@ -35,4 +35,14 @@ app.post("/add", (req, res) => {
   });
 });
 
+app.get("/fire", (req, res) => {
+  db.selectFire()
+    .then(result => {
+      res.send(result);
+    })
+    .catch(error => {
+      console.log("Something Went Wrong:", error);
+    });
+});
+
 module.exports = app;
