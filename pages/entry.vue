@@ -10,8 +10,11 @@
       label="Content"
       placeholder="testset"
     ></v-text-field>
-    <v-btn @click="addEntry()" depressed color="primary">
+    <v-btn v-if="add" @click="addEntry()" depressed color="primary">
       Add
+    </v-btn>
+    <v-btn v-else @click="editEntry()" depressed color="primary">
+      Edit
     </v-btn>
   </v-form>
 </template>
@@ -22,9 +25,24 @@ export default {
   async asyncData(context) {
     console.log(context.params);
     var out = context.params.id;
-    console.log("inputery: ", out);
+
+    var isAdd = false;
+    var sTitle = "";
+    var sContent = "";
+    if (typeof out == "undefined") {
+      isAdd = true;
+    } else {
+      sTitle = context.params.title;
+      sContent = context.params.content;
+      isAdd = false;
+    }
+
+    return {
+      add: isAdd,
+      title: sTitle,
+      content: sContent
+    };
     //title = context.params.title;
-    return { title: context.params.title, content: context.params.content };
   },
   data() {},
   methods: {
