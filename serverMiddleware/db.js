@@ -20,6 +20,8 @@ const createStaticsDBquery = `
    `;
 
 const insertFireQuery = "INSERT INTO fire(title, content) VALUES($1, $2)";
+const editFireQuery = "UPDATE fire SET title = $1, content = $2 WHERE id = $3";
+const deleteFireQuery = "DELETE FROM fire WHERE id = $1";
 
 const selectFireQuery = `
 SELECT id, title, content, created 
@@ -68,5 +70,29 @@ export default {
     });
 
     return response.rows;
+  },
+  editFire: async function(id, title, content) {
+    var input = [title, content, id];
+    response = await pool.query(editFireQuery, input).catch(e => {
+      console.log("PROMISE_ERROR_EDIT_FIRE", e);
+      return "FAIL";
+    });
+
+    //    return "SUCCESS";
+    console.log("fromDB", response.rowCount);
+
+    return response.rowCount;
+  },
+  deleteFire: async function(id) {
+    var input = [id];
+    response = await pool.query(deleteFireQuery, input).catch(e => {
+      console.log("PROMISE_ERROR_DELETE_FIRE", e);
+      return "FAIL";
+    });
+
+    //    return "SUCCESS";
+    console.log("fromDB", response.rowCount);
+
+    return response.rowCount;
   }
 };

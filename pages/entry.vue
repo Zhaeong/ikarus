@@ -5,23 +5,29 @@
       label="Title"
       placeholder="testset"
     ></v-text-field>
-    <v-text-field
+    <v-textarea
       v-model="content"
       label="Content"
       placeholder="testset"
-    ></v-text-field>
-    <v-btn v-if="add" @click="addEntry()" depressed color="primary">
+    ></v-textarea>
+    <v-btn v-show="add" @click="addEntry()" depressed color="primary">
       Add
     </v-btn>
-    <v-btn v-else @click="editEntry()" depressed color="primary">
+    <v-btn v-show="!add" @click="editEntry()" depressed color="primary">
       Edit
     </v-btn>
+    <v-btn v-show="!add" @click="deleteEntry()" depressed color="red">
+      Delete
+    </v-btn>
+    <ErrorAlert ref="erralert" />
+    <ConfirmAlert ref="confalert" />
   </v-form>
 </template>
 <script>
 import ErrorAlert from "~/components/ErrorAlert.vue";
+import ConfirmAlert from "~/components/ConfirmAlert.vue";
 export default {
-  components: { ErrorAlert },
+  components: { ErrorAlert, ConfirmAlert },
   async asyncData(context) {
     console.log(context.params);
     var out = context.params.id;
@@ -29,16 +35,19 @@ export default {
     var isAdd = false;
     var sTitle = "";
     var sContent = "";
+    var entryID = -1;
     if (typeof out == "undefined") {
       isAdd = true;
     } else {
       sTitle = context.params.title;
       sContent = context.params.content;
+      entryID = context.params.id;
       isAdd = false;
     }
 
     return {
       add: isAdd,
+      id: entryID,
       title: sTitle,
       content: sContent
     };
@@ -47,15 +56,52 @@ export default {
   data() {},
   methods: {
     async addEntry() {
-      console.log("yyaaa?");
+      if (this.title == "" || this.content == "") {
+        this.$refs.erralert.open("ERROR", "Title or Content can't be empty");
+      } else {
+        console.log(this.title);
+        var postData = { title: this.title, content: this.content };
 
-      console.log(this.title);
-      var postData = { title: this.title, content: this.content };
+        var url = "/api/add";
+        let { data } = await this.$axios.post(url, postData);
+        this.add = false;
+      }
+    },
+    async editEntry() {
+      var isEdit = await this.$refs.confalert
+        .open("Confirmation", "U sure to edit Brah?")
+        .catch(error => {
+          console.log("Something Went Wrong with confirmDialog:", error);
+        });
 
-      console.log("posty", postData);
-      var url = "/api/add";
-      let { data } = await this.$axios.post(url, postData);
-      console.log("clientresponse: ", data);
+      if (isEdit) {
+        var postData = {
+          id: this.id,
+          title: this.title,
+          content: this.content
+        };
+
+        var url = "/api/edit";
+        let { data } = await this.$axios.post(url, postData);
+        console.log("clientresponse: ", data);
+      }
+    },
+    async deleteEntry() {
+      var isDelete = await this.$refs.confalert
+        .open("Confirmation", "U sure Brah?")
+        .catch(error => {
+          console.log("Something Went Wrong with confirmDialog:", error);
+        });
+      console.log("returnation", isDelete);
+      if (isDelete) {
+        console.log("imma kill that bitch");
+        var postData = { id: this.id };
+        var url = "/api/delete";
+        let { data } = await this.$axios.post(url, postData);
+        console.log("clientresponse: ", data);
+        //This redirects page to /entries
+        this.$router.push("/entries");
+      }
     }
   }
 };

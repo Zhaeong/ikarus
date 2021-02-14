@@ -19,6 +19,9 @@
         </v-list-item>
       </v-list-item-group>
     </v-list>
+    <v-btn fab fixed bottom right color="primary" :to="{ name: 'entry' }">
+      +
+    </v-btn>
   </v-card>
 </template>
 <script>
@@ -31,11 +34,10 @@ export default {
     console.log("respons", data);
     var items = new Array();
 
-    var row = { id: "1", title: "sample" };
-    items.push(row);
+    //    var row = { id: "1", title: "sample" };
+    //    items.push(row);
 
     for (var i = 0; i < data.length; i++) {
-      console.log("row ", i, " id: ", data[i].id, " title: ", data[i].title);
       var row = {
         id: data[i].id,
         title: data[i].title,
@@ -43,8 +45,6 @@ export default {
       };
       items.push(row);
     }
-
-    console.log("items", items);
     return { items };
   }
 };

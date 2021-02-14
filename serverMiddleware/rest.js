@@ -35,6 +35,19 @@ app.post("/add", (req, res) => {
   });
 });
 
+app.post("/edit", (req, res) => {
+  console.log("got in this", req.body);
+  console.log("got in this", req.body.title);
+
+  db.editFire(req.body.id, req.body.title, req.body.content).then(result => {
+    res.send("Rows:" + result);
+  });
+});
+app.post("/delete", (req, res) => {
+  db.deleteFire(req.body.id).then(result => {
+    res.send("Rows:" + result);
+  });
+});
 app.get("/fire", (req, res) => {
   db.selectFire()
     .then(result => {
