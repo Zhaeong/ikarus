@@ -2,6 +2,9 @@ import colors from "vuetify/es5/util/colors";
 
 const BASE_URL = process.env.NUXT_ENV_BASE_URL || "http://localhost:3000";
 export default {
+  env: {
+    BASE_URL
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: "%s - ikarus",
