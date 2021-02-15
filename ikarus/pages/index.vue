@@ -38,9 +38,10 @@ export default {
     console.log("here?");
 
     var url = "/api/title";
-    var item = await context.$axios.get(url);
+    var retVal = await context.$axios.get(url);
+    var item = retVal.data;
     if (process.server) {
-      console.log("Is server process");
+      console.log("Is server process", item);
     }
     return { item };
   }
