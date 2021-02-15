@@ -14,10 +14,12 @@ RUN npm run build
 
 
 #EXPOSE 3000
+ENV HOST=0.0.0.0
 
+ENV PORT=$PORT
 
 ENV NUXT_HOST=0.0.0.0
 
 ENV NUXT_PORT=$PORT
 
-CMD ["npm", "start"]
+CMD npm start -- --port=$PORT
