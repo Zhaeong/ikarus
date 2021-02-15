@@ -29,7 +29,6 @@ import ConfirmAlert from "~/components/ConfirmAlert.vue";
 export default {
   components: { ErrorAlert, ConfirmAlert },
   async asyncData(context) {
-    console.log(context.params);
     var out = context.params.id;
 
     var isAdd = false;

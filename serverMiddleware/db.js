@@ -29,8 +29,8 @@ FROM public.fire
 ORDER BY id ASC `;
 
 const opts = {
-  max: 10, // maximum size of the pool
-  min: 2 // minimum size of the pool
+  max: 3, // maximum size of the pool
+  min: 1 // minimum size of the pool
 };
 
 const pool = new Pool({
@@ -39,8 +39,7 @@ const pool = new Pool({
   database: "wooduqmm",
   password: "V_Fzp8pzrdwC8EKKy7-HqgaMIPbc4YsB",
   port: 5432,
-  max: 10,
-  min: 2
+  opts
 });
 
 export default {
@@ -89,9 +88,6 @@ export default {
       console.log("PROMISE_ERROR_DELETE_FIRE", e);
       return "FAIL";
     });
-
-    //    return "SUCCESS";
-    console.log("fromDB", response.rowCount);
 
     return response.rowCount;
   }

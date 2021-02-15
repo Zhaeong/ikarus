@@ -39,7 +39,7 @@ export default {
 
     for (var i = 0; i < data.length; i++) {
       var row = {
-        id: data[i].id,
+        id: data[i]._id,
         title: data[i].title,
         content: data[i].content
       };

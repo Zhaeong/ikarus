@@ -36,13 +36,9 @@ export default {
   },
   async asyncData(context) {
     console.log("here?");
-    var item = "heyyoo";
 
     var url = "/api/title";
-    let { data } = await context.$axios.get(url);
-    console.log("type:", typeof data);
-    console.log("here:", data);
-    item = data;
+    var item = await context.$axios.get(url);
     if (process.server) {
       console.log("Is server process");
     }
