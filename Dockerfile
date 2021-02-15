@@ -22,4 +22,4 @@ ENV NUXT_HOST=0.0.0.0
 
 ENV NUXT_PORT=$PORT
 
-CMD npm start -- --port=$PORT
+CMD npm start -- --port=$PORT --host='0.0.0.0'
