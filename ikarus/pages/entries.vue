@@ -28,7 +28,7 @@
 export default {
   components: {},
   async asyncData(context) {
-    var url = BASE_URL + "/api/fire";
+    var url = process.env.BASE_URL + "/api/fire";
     let { data } = await context.$axios.get(url);
 
     console.log("respons", data);
