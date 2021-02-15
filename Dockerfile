@@ -16,5 +16,6 @@ RUN npm run build
 #EXPOSE 3000
 
 
+ENV NUXT_PORT=$PORT
 
-CMD npm start -- --port=$PORT
+CMD npm start -- --port=$PORT 
