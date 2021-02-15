@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "nodemon --watch serverMiddleware --exec \"nuxt\"",
-    "build": "nuxt build",
-    "start": "NUXT_ENV_BASE_URL=https://theendoftheworld.herokuapp.com nuxt start",
+    "build": "NUXT_ENV_BASE_URL=https://theendoftheworld.herokuapp.com nuxt build",
+    "buildwindows": "set NUXT_ENV_BASE_URL=https://theendoftheworld.herokuapp.com & nuxt build",
+    "start": "nuxt start",
     "generate": "nuxt generate"
   },
   "dependencies": {
