@@ -61,7 +61,7 @@ export default {
         console.log(this.title);
         var postData = { title: this.title, content: this.content };
 
-        var url = "/api/add";
+        var url = process.env.BASE_URL + "/api/add";
         let { data } = await this.$axios.post(url, postData);
         this.add = false;
       }
@@ -80,7 +80,7 @@ export default {
           content: this.content
         };
 
-        var url = "/api/edit";
+        var url = process.env.BASE_URL + "/api/edit";
         let { data } = await this.$axios.post(url, postData);
         console.log("clientresponse: ", data);
       }
@@ -95,7 +95,7 @@ export default {
       if (isDelete) {
         console.log("imma kill that bitch");
         var postData = { id: this.id };
-        var url = "/api/delete";
+        var url = process.env.BASE_URL + "/api/delete";
         let { data } = await this.$axios.post(url, postData);
         console.log("clientresponse: ", data);
         //This redirects page to /entries

@@ -1,6 +1,7 @@
 import colors from "vuetify/es5/util/colors";
 
-const BASE_URL = process.env.NUXT_ENV_BASE_URL || "http://localhost:3000";
+const BASE_URL_MAIN = process.env.NUXT_ENV_BASE_URL || "http://localhost:3000";
+const BASE_URL = BASE_URL_MAIN.replace(/\s+/g, "");
 export default {
   env: {
     BASE_URL

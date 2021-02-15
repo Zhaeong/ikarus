@@ -29,9 +29,7 @@ export default {
   components: {},
   async asyncData(context) {
     var url = process.env.BASE_URL + "/api/fire";
-    var urlStripped = url.replace(/\s+/g, "");
-    console.log("url be: ", urlStripped);
-    let { data } = await context.$axios.get(urlStripped);
+    let { data } = await context.$axios.get(url);
 
     console.log("respons", data);
     var items = new Array();

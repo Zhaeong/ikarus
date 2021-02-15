@@ -37,7 +37,7 @@ export default {
   async asyncData(context) {
     console.log("here?");
 
-    var url = "/api/title";
+    var url = process.env.BASE_URL + "/api/title";
     var retVal = await context.$axios.get(url);
     var item = retVal.data;
     if (process.server) {
