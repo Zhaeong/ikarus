@@ -1,5 +1,6 @@
 import colors from "vuetify/es5/util/colors";
 
+const BASE_URL = process.env.NUXT_ENV_BASE_URL || "http://localhost:3000";
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -33,6 +34,10 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: ["@nuxtjs/axios"],
+
+  axios: {
+    baseURL: BASE_URL
+  },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {

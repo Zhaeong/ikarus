@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "nodemon --watch serverMiddleware --exec \"nuxt\"",
     "build": "nuxt build",
-    "start": "nuxt start",
+    "start": "NUXT_ENV_BASE_URL=https://theendoftheworld.herokuapp.com nuxt start",
     "generate": "nuxt generate"
   },
   "dependencies": {
