@@ -14,6 +14,8 @@
         <v-card-text>
           {{ item }}
         </v-card-text>
+
+        <v-card-text> heyyy {{ getLoginInfo }} </v-card-text>
         <v-card-actions>
           <v-spacer />
           <v-btn color="primary" nuxt to="/inspire">
@@ -44,6 +46,21 @@ export default {
       console.log("Is server process", item);
     }
     return { item };
+  },
+  computed: {
+    getLoginInfo() {
+      //      var isLoggedin = this.$store.state.isLoggedIn;
+      var isLoggedin = this.$store.getters.getLogin;
+      var mainText = "ERROR";
+      if (!isLoggedin) {
+        mainText = "not loggged in";
+      } else {
+        mainText = "logged in";
+      }
+
+      console.log("islog: ", this.$store.getters.getLogin);
+      return mainText;
+    }
   }
 };
 </script>

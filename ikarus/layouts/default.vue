@@ -86,6 +86,11 @@ export default {
           icon: "mdi-allergy",
           title: "Entries",
           to: "/entries"
+        },
+        {
+          icon: "mdi-allergy",
+          title: "Login",
+          to: "/login"
         }
       ],
       miniVariant: false,

@@ -9,7 +9,10 @@ class MongoObj {
   }
 
   async connect() {
-    this.client = new MongoClient(this.url);
+    this.client = new MongoClient(this.url, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
     await this.client.connect();
     this.database = this.client.db("ZhongFan");
     this.collection = this.database.collection("Daedalus");
@@ -21,13 +24,6 @@ class MongoObj {
 }
 const client = new MongoClient(uri);
 
-async function getCollection() {
-  await client.connect();
-  const database = client.db("ZhongFan");
-  const collection = database.collection("Daedalus");
-
-  return collection;
-}
 export default {
   getMain: async function() {
     let mongoObj = new MongoObj(uri);
