@@ -109,5 +109,17 @@ export default {
     } finally {
       mongoObj.close();
     }
+  },
+  getLogin: async function() {
+    let mongoObj = new MongoObj(uri);
+    try {
+      const query = { title: "Pass" };
+      await mongoObj.connect();
+      const result = await mongoObj.collection.findOne(query);
+
+      return result;
+    } finally {
+      mongoObj.close();
+    }
   }
 };

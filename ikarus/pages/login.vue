@@ -1,6 +1,5 @@
 <template>
   <v-form ref="form" lazy-validation>
-    <v-text-field v-model="user" label="User" placeholder="User"></v-text-field>
     <v-text-field
       v-model="password"
       label="Password"
@@ -9,10 +8,14 @@
     <v-btn @click="loginUser()" depressed color="primary">
       Login
     </v-btn>
+
+    <ErrorAlert ref="erralert" />
   </v-form>
 </template>
 <script>
+import ErrorAlert from "~/components/ErrorAlert.vue";
 export default {
+  components: { ErrorAlert },
   async asyncData(context) {
     return {
       user: "",
@@ -21,12 +24,20 @@ export default {
   },
   data() {},
   methods: {
-    loginUser() {
-      console.log("trying to login: ", this.user);
+    async loginUser() {
+      console.log("trying to login: ", this.password);
+      let postData = { password: this.password };
 
-      this.$store.commit("setLogin");
+      let url = process.env.BASE_URL + "/api/login";
+      let retVal = await this.$axios.post(url, postData);
 
-      console.log("afterVal: ", this.$store.state.isLoggedIn);
+      if ("User" in retVal.data && retVal.data.User == "Johnny") {
+        let user = retVal.data.User;
+        this.$store.commit("setLogin", user);
+        this.$router.push("/");
+      } else {
+        this.$refs.erralert.open("FAILED", "Incorrect Password");
+      }
     }
   }
 };

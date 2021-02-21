@@ -6,7 +6,9 @@
       </v-card-title>
 
       <v-card-text>
-        {{ message }}
+        <div class="text-h5 pa-4">
+          {{ message }}
+        </div>
       </v-card-text>
 
       <v-divider></v-divider>

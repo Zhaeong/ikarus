@@ -1,16 +1,19 @@
 export const state = () => ({
   counter: 0,
-  isLoggedIn: false
+  isLoggedIn: false,
+  name: "Not Logged In"
 });
 
 export const getters = {
   getLogin(state) {
-    return state.isLoggedIn;
+    return state.name;
   }
 };
 
 export const mutations = {
-  setLogin(state) {
+  setLogin(state, name) {
+    console.log("calling setloing: ", name);
     state.isLoggedIn = true;
+    state.name = name;
   }
 };

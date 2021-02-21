@@ -31,7 +31,6 @@ export default {
     var url = process.env.BASE_URL + "/api/fire";
     let { data } = await context.$axios.get(url);
 
-    console.log("respons", data);
     var items = new Array();
 
     //    var row = { id: "1", title: "sample" };

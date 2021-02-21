@@ -12,8 +12,6 @@ app.get("/", (req, res) => {
   res.send("asfdsfsdfs");
 });
 app.get("/title", (req, res) => {
-  console.log("in titlie");
-
   db.getMain()
     .then(result => {
       res.send(result);
@@ -45,6 +43,18 @@ app.post("/delete", (req, res) => {
     res.send("Rows:" + result);
   });
 });
+
+app.post("/login", (req, res) => {
+  db.getLogin().then(result => {
+    let submitPass = req.body.password;
+    let response = { User: "ERROR" };
+    if (submitPass == result.password) {
+      response.User = result.name;
+    }
+    res.send(response);
+  });
+});
+
 app.get("/fire", (req, res) => {
   db.selectFire()
     .then(result => {

@@ -49,17 +49,8 @@ export default {
   },
   computed: {
     getLoginInfo() {
-      //      var isLoggedin = this.$store.state.isLoggedIn;
-      var isLoggedin = this.$store.getters.getLogin;
-      var mainText = "ERROR";
-      if (!isLoggedin) {
-        mainText = "not loggged in";
-      } else {
-        mainText = "logged in";
-      }
-
-      console.log("islog: ", this.$store.getters.getLogin);
-      return mainText;
+      var loginName = this.$store.getters.getLogin;
+      return loginName;
     }
   }
 };
