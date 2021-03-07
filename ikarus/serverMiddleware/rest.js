@@ -1,5 +1,6 @@
 const bodyParser = require("body-parser");
 const app = require("express")();
+var cors = require("cors");
 
 /*
 postgres://wooduqmm:V_Fzp8pzrdwC8EKKy7-HqgaMIPbc4YsB@ziggy.db.elephantsql.com:5432/wooduqmm
@@ -8,6 +9,7 @@ var db = require("./dbMongo.js").default;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors());
 app.get("/", (req, res) => {
   res.send("asfdsfsdfs");
 });

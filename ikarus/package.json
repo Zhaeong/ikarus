@@ -12,6 +12,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.12.5",
     "core-js": "^3.8.2",
+    "cors": "^2.8.5",
     "mongodb": "^3.6.4",
     "nodemon": "^2.0.7",
     "nuxt": "^2.14.12",
