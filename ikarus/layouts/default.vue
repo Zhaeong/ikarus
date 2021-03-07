@@ -37,6 +37,7 @@
       </v-btn>
       <v-toolbar-title v-text="title" />
       <v-spacer />
+      {{ getLoginInfo }}
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>mdi-menu</v-icon>
       </v-btn>
@@ -67,7 +68,9 @@
 <script>
 export default {
   data() {
+    var name = this.$store.getters.getLogin;
     return {
+      loginName: name,
       clipped: false,
       drawer: false,
       fixed: false,
@@ -96,8 +99,14 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: "Flying close to the Sun"
+      title: "Flying close to the Sun thos"
     };
+  },
+  computed: {
+    getLoginInfo() {
+      var loginName = this.$store.getters.getLogin;
+      return loginName;
+    }
   }
 };
 </script>

@@ -10,15 +10,17 @@
       label="Content"
       placeholder="testset"
     ></v-textarea>
-    <v-btn v-show="add" @click="addEntry()" depressed color="primary">
-      Add
-    </v-btn>
-    <v-btn v-show="!add" @click="editEntry()" depressed color="primary">
-      Edit
-    </v-btn>
-    <v-btn v-show="!add" @click="deleteEntry()" depressed color="red">
-      Delete
-    </v-btn>
+    <template v-if="getLogin">
+      <v-btn v-show="add" @click="addEntry()" depressed color="primary">
+        Add
+      </v-btn>
+      <v-btn v-show="!add" @click="editEntry()" depressed color="primary">
+        Edit
+      </v-btn>
+      <v-btn v-show="!add" @click="deleteEntry()" depressed color="red">
+        Delete
+      </v-btn>
+    </template>
     <ErrorAlert ref="erralert" />
     <ConfirmAlert ref="confalert" />
   </v-form>
@@ -35,6 +37,7 @@ export default {
     var sTitle = "";
     var sContent = "";
     var entryID = -1;
+
     if (typeof out == "undefined") {
       isAdd = true;
     } else {
@@ -91,9 +94,7 @@ export default {
         .catch(error => {
           console.log("Something Went Wrong with confirmDialog:", error);
         });
-      console.log("returnation", isDelete);
       if (isDelete) {
-        console.log("imma kill that bitch");
         var postData = { id: this.id };
         var url = process.env.BASE_URL + "/api/delete";
         let { data } = await this.$axios.post(url, postData);
@@ -101,6 +102,12 @@ export default {
         //This redirects page to /entries
         this.$router.push("/entries");
       }
+    }
+  },
+  computed: {
+    getLogin() {
+      var loginState = this.$store.getters.getLoginState;
+      return loginState;
     }
   }
 };

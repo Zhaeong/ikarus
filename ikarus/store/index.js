@@ -7,6 +7,9 @@ export const state = () => ({
 export const getters = {
   getLogin(state) {
     return state.name;
+  },
+  getLoginState(state) {
+    return state.isLoggedIn;
   }
 };
 
