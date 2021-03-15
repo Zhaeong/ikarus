@@ -75,7 +75,7 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: "Ozhang"
+      title: "ozhang"
     };
   },
 
