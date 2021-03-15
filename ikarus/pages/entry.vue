@@ -6,6 +6,8 @@
       placeholder="testset"
     ></v-text-field>
     <v-textarea
+      rows="1"
+      auto-grow
       v-model="content"
       label="Content"
       placeholder="testset"

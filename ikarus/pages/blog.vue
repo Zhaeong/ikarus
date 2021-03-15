@@ -17,8 +17,20 @@
           <v-card-text class="date">
             {{ item.date }}
           </v-card-text>
-          <v-card-text class="contents">
-            {{ item.content }}
+          <v-card-text class="text--primary">
+            <!--This is going through the text and splitting on newline since it doesn't by default 
+            <div v-for="(text, index) in item.content.split('\n')" :key="index">
+              {{ text }}
+            </div>
+            -->
+            <v-textarea
+              class="contents"
+              v-model="item.content"
+              rows="1"
+              auto-grow
+              readonly
+            >
+            </v-textarea>
           </v-card-text>
         </v-card>
         <v-divider class="pa-md-1"></v-divider>
@@ -35,7 +47,7 @@
   font-style: italic;
 }
 .contents {
-  padding-top: 1px;
+  padding-top: 0px;
 }
 </style>
 <script>
