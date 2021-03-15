@@ -1,18 +1,3 @@
-<style>
-.title {
-  padding-bottom: 0;
-}
-.date {
-  padding-bottom: 0;
-  font-style: italic;
-}
-.contents {
-  padding-left: 16px;
-  padding-right: 16px;
-
-  padding-top: 0px;
-}
-</style>
 <template>
   <v-layout color="primary">
     <v-col cols="12" sm="9" md="10">
@@ -26,10 +11,10 @@
         :key="item.id"
       >
         <v-card>
-          <v-card-title class="title">
+          <v-card-title style="padding-bottom: 0;">
             {{ item.title }}
           </v-card-title>
-          <v-card-text class="date">
+          <v-card-text style="padding-bottom: 0;font-style: italic;">
             {{ item.date }}
           </v-card-text>
           <!--This is going through the text and splitting on newline since it doesn't by default 
@@ -43,6 +28,7 @@
             rows="1"
             auto-grow
             readonly
+            style="padding-left: 16px;padding-right: 16px;padding-top: 0px;"
           >
           </v-textarea>
         </v-card>
