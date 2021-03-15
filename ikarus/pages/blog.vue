@@ -1,3 +1,18 @@
+<style>
+.title {
+  padding-bottom: 0;
+}
+.date {
+  padding-bottom: 0;
+  font-style: italic;
+}
+.contents {
+  padding-left: 16px;
+  padding-right: 16px;
+
+  padding-top: 0px;
+}
+</style>
 <template>
   <v-layout color="primary">
     <v-col cols="12" sm="9" md="10">
@@ -17,39 +32,26 @@
           <v-card-text class="date">
             {{ item.date }}
           </v-card-text>
-          <v-card-text class="text--primary">
-            <!--This is going through the text and splitting on newline since it doesn't by default 
+          <!--This is going through the text and splitting on newline since it doesn't by default 
             <div v-for="(text, index) in item.content.split('\n')" :key="index">
               {{ text }}
             </div>
             -->
-            <v-textarea
-              class="contents"
-              v-model="item.content"
-              rows="1"
-              auto-grow
-              readonly
-            >
-            </v-textarea>
-          </v-card-text>
+          <v-textarea
+            class="contents"
+            v-model="item.content"
+            rows="1"
+            auto-grow
+            readonly
+          >
+          </v-textarea>
         </v-card>
         <v-divider class="pa-md-1"></v-divider>
       </div>
     </v-col>
   </v-layout>
 </template>
-<style>
-.title {
-  padding-bottom: 0;
-}
-.date {
-  padding-bottom: 0;
-  font-style: italic;
-}
-.contents {
-  padding-top: 0px;
-}
-</style>
+
 <script>
 export default {
   components: {},
