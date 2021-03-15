@@ -120,7 +120,8 @@ export default {
       await mongoObj.connect();
 
       const query = { type: "Fire" };
-      const options = { sort: { title: 1 } };
+      //-1 means in descending order
+      const options = { sort: { date: -1 } };
       var cursor = mongoObj.collection.find(query, options);
       var data = new Array();
 

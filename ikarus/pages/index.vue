@@ -1,25 +1,18 @@
 <template>
   <v-row justify="center" align="center">
     <v-col cols="12" sm="8" md="6">
-      <!--
-      <div class="text-center">
-        <logo />
-        <vuetify-logo />
-      </div>
-      -->
       <v-card>
         <v-card-title class="headline">
-          Owen Zhang
+          Hello
         </v-card-title>
         <v-card-text>
           {{ item }}
         </v-card-text>
 
-        <v-card-text> heyyy {{ getLoginInfo }} </v-card-text>
         <v-card-actions>
           <v-spacer />
-          <v-btn color="primary" nuxt to="/inspire">
-            Continue
+          <v-btn color="primary" nuxt to="/blog">
+            Blog
           </v-btn>
         </v-card-actions>
       </v-card>
