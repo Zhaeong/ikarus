@@ -54,3 +54,75 @@ But as for me, I'm out.
 
 
 ",2021-03-20 19:22:9
+"Chris Crawford give up, the futility of interactive storytelling","http://www.erasmatazz.com/library/interactive-storytelling/why-i-am-ending-further.html
+Pioneer of GDC and game as an artform herald quits making interactive fiction, his life's work. ",2021-03-22 3:16:27
+Gamedev Dogmas,"I am by no means a professional game developer in any capacity, but I do take games as a medium seriously. I thought it might be fun to have a discussion on a list of rules that are the gamedev equivalent of Dogme 95.
+
+The original Dogme 95 was to try to take back the artistry of film from the studio to the directors. There was the idea that films are too focused on big budgets and special effects in lieu of storytelling and craft. These rules try to get at the heart of films, stripping away its excesses. https://en.wikipedia.org/wiki/Dogme_95
+
+These rules should try to do the same. Establish extremes which puts the artistry back into games. These should be rules which try to narrow the focus of games, eliminating need for large budgets and cutting edge tech. I’m not sure if there should be limits on which types of games shouldn’t be made, things like no open world games are too general, although I would like there to be rules which limits the scope of the game. There can’t be too many mechanics in a game which can dilute its meaning. But I’m not sure how to formulate it as a rule.
+
+These are a few I’ve come up with so far:
+
+    No use of superficial violence as a core mechanic. Things like shooting, fighting, commanding units to attack. Core mechanic meaning it is a primary gameplay loop that the player engages with throughout the game. (Maybe there should be a rule where you have to focus on realism, it doesn’t make sense to have the player character kill thousands in a playthrough. That person doesn’t exist).
+
+    Released games must contain all elements, no post release content (i.e. expansion packs). Things like patches for bug fixes are allowed but must not modify the game in any way that differs from the intended vision. I.e. you can’t change a game mechanic post release because you’ve found a better method. (Maybe this should be more flexible for episodic content).
+
+    No mechanics which requires payment post release (i.e. no microtransactions).
+
+    All game code must be open source, and publicly available. (you might say no one will pay for the game in that case, but I think the educational benefits outweigh the profit loss, it’ll be pirated anyways, and compiling the game isn’t a small task).
+
+    If the game has a narrative, there must be at least one mechanic that is at least loosely related to it. (Ludo narrative harmony, although this rule might be too restrictive, and has the capacity to be pretentious).
+
+    The game must have a mechanic outside of just walking and reading (i.e. no walking simulators, but this rule might run counter to the purpose of these rules).
+
+Really, these are just things I’d like to see more in games.
+",2021-03-22 4:28:29
+Chris Crawford's Vision into the Heavens,"http://www.erasmatazz.com/library/interactive-storytelling/references-for-wumpus.html
+He goes much more in depth into what I was thinking of initially when trying to create meaningful interactions in games. You quickly reach a wall when trying to make choices matter, the decision tree becomes unmanageable, it's an exponential increase. That's where I stopped, and that's where Chris pushed on.
+http://www.erasmatazz.com/library/interactive-storytelling/encounter-system-technology/architecture-of-encounter.html
+It's very laudable, and the solution he proposes is pretty interesting, an encounter based system of randomly allowing the user to choose between a set of events, with a global variable to keep track of allowed next states. I would like to create something with that architecture with some simple graphics.
+I have solutions to two problems:
+Code Architecture -> ECS
+Story Architecture -> Chris' Encounter system.
+This feel like the start of my next project.
+Reading on however it's super interesting, and a bit depressing to see the lack of widespread knowledge of Chris' work. The industry doesn't even care about these issues in game design. I think it's partially Chris' fault, looking at his past projects and Wumpus 0.87, they've been highly inaccessible. He's trying to create a story telling engine, then trying to get people to use it, without creating anything meaningful in it in the first place. It's all theory and no practice, which I guess is why the mainstream hasn't cared.
+There's a feeling of pathos when looking back at his famous dragon speech, then reading his I'm giving up post. Keep on pushing Chris, your work is important.
+",2021-03-24 5:43:54
+Game Idea: Crawford's Dragon,"A game about ambition, dreams and the struggle to fulfill. Using Chris' allegory of the dragon as the ultimate goal of game design, create a standard story about a knight slaying a dragon. Use Chris' theory on interactive storytelling to portray different events occurring in the story, with the ultimate outcome being dragon slayed or not. Interestingly, Chris is actually creating a similar game about King Arthur's battle with Mordred.
+A series of short encounters with different individuals which you must recruit in your battle against the 'Dragon'. Some questioning why the dragon needs to be fought in the first place. Some complacent in the dragonness way of life.
+
+Dragon as an allegory for the evil that is holding back game design in Chris' goal?
+Chris must find the holy sword (answer in game design) to defeat the Dragon.
+People complacent with the way the Dragon is wrecking havoc on.
+
+Each person the knight talks to has to be representative of an aspect of the gamedev community. Doubters, supporters? The concept of ennui?
+Three encounters?
+
+In a faraway land, there was a mythical dragon that mostly kept to itself. Maybe the holy grail would be a more apt metaphor to the goal of interactive story design. Instead of a dragon that's wrecking havoc. The dragon can be one of the encounters blocking the way to the Grail. But maybe the Grail metaphor would be too on the nose. Dragon sounds cooler and there's the death analogy.
+
+In a faraway land, there was a mythical Dragon that terrorized the town. However the townsfolk didn't feel terrorized, this was because the Dragon was so horrible and ever present that people just ignored it. So awful was its presence that most people didn't even realize the extent that the Dragon affected their daily lives. They just carried on as if it wasn't the most terrible travesty that befell the lands.
+
+Who doesn't see and Crawford needs to convince?
+The industry (creators?), the gamer, the artist?
+It's corollary to medieval
+The blacksmith, the townsfolk, the king?
+Who would be the king in the real world. Industry? 
+",2021-03-24 16:49:15
+Interactive Narrative Design,"CC proposes a system of random next dialog choices depending on character favorability towards the player character. It seems like a tiered system of various dialog path unlocks.
+Example:
+Character Favorability towards player: 0
+Two choices to increase or decrease value.
+X number of reactions depending on favorability (here is where it is randomized, but accounting for weight factor)
+The reactions lead to next step in dialog. Rinse and repeat till terminal message.
+
+Dialog 1 -> Choice A (+1), Choice B (-1), Choice C(0)
+Reaction 1 (%50 probability + favorability) -> Dialog 2
+Reaction 2 (%50 probability - favorability) -> Dialog 3
+
+Which repeats until end dialog.
+
+It can still be a lot of dialog trees to design over, and if each choice results in two reactions leading to two different dialogs, it'll still unmaintainable exponential growth. The elegance here is that the player is able to select factors which can impact outcomes, however ultimately it's still mostly a linear experience.
+
+
+",2021-04-07 20:20:50
