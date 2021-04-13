@@ -1,5 +1,6 @@
 const bodyParser = require("body-parser");
 const app = require("express")();
+const https = require("https");
 var cors = require("cors");
 
 /*
@@ -59,6 +60,36 @@ app.get("/fire", (req, res) => {
     .catch(error => {
       console.log("Something Went Wrong:", error);
     });
+});
+app.get("/edgar", (req, res) => {
+  let edgarBaseURL = "https://www.sec.gov/Archives/edgar/data";
+  //edgar company id and document number
+  let cik = "/732717/000073271721000015";
+
+  let filingsURL = edgarBaseURL + cik + "/index.json";
+
+  const reques = https.get(filingsURL, result => {
+    console.log(`statusCode: ${result.statusCode}`);
+
+    let output = "";
+    result.on("data", d => {
+      //    process.stdout.write(d);
+      output += d;
+    });
+
+    result.on("end", () => {
+      //console.log(output);
+      let outputJson = JSON.stringify(output);
+      res.send(outputJson);
+      console.log(outputJson);
+    });
+  });
+
+  reques.on("error", error => {
+    console.error(error);
+  });
+
+  reques.end();
 });
 
 module.exports = app;
